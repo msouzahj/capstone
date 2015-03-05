@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Meets:</strong>
+  <%= @access.meets %>
+</p>
+
+<p>
+  <strong>Seasons:</strong>
+  <%= @access.seasons %>
+</p>
+
+<p>
+  <strong>Events:</strong>
+  <%= @access.events %>
+</p>
+
+<%= link_to 'Edit', edit_access_path(@access) %> |
+<%= link_to 'Back', accesses_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @meet.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @meet.date %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @meet.notes %>
+</p>
+
+<p>
+  <strong>Season:</strong>
+  <%= @meet.season %>
+</p>
+
+<%= link_to 'Edit', edit_meet_path(@meet) %> |
+<%= link_to 'Back', season_meets_path %>

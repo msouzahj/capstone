@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  meets_id: 
+  seasons_id: 
+  events_id: 
+
+two:
+  meets_id: 
+  seasons_id: 
+  events_id: 

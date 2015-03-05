@@ -1,0 +1,36 @@
+<h1>My Seasons</h1>
+<% if user_signed_in? %>
+  <% if @my_season[0] == nil %>
+    <br>
+    You have no seasons! 
+    <%= link_to 'New Season', new_season_path %>
+  <% else %>
+    <br>
+    <%= link_to 'New Season', new_season_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Season</th>
+      <th>Year</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @my_season.each do |season| %>
+      <tr>
+	<td><%= link_to season.season, season_meets_path(season) %></td>
+        <td><%= season.year %></td>
+        <td><%= link_to 'Show', season %></td>
+        <td><%= link_to 'Edit', edit_season_path(season) %></td>
+        <td><%= link_to 'Destroy', season, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    <%end %>
+
+<%end %>
+
+<br>
+

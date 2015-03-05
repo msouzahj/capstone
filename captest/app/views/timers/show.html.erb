@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Saved times:</strong>
+  <%= @timer.saved_times %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @timer.user %>
+</p>
+
+<%= link_to 'Edit', edit_timer_path(@timer) %> |
+<%= link_to 'Back', timers_path %>

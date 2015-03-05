@@ -1,0 +1,39 @@
+<nav class="navbar navbar-inverse" role="navigation">
+ <div class="container-fluid">
+  <div class="navbar-header">
+   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+   </button>
+   <%= link_to "Track and Field", root_path,class: 'navbar-brand' %>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
+   <ul class="nav navbar-nav">
+    <li><%= link_to "Home", root_path %></li>
+    <li><a href="#">Practice</a></li>
+    <li><%= link_to "Timer", timers_path %></li>
+   </ul>
+   <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+                <li>
+		    <%= link_to destroy_user_session_path,class: 'glyphicon glyphicon-log-out', method: :delete do %>
+			<span>Logout</span>
+		    <% end %>
+		</li>
+        <% else %>
+                <li>
+		    <%= link_to new_user_registration_path, class: 'glyphicon glyphicon-user' do %>
+			<span>Sign-up</span>
+		    <% end %>
+		</li>
+                <li>
+		    <%= link_to new_user_session_path, class: 'glyphicon glyphicon-log-in' do %>
+			<span>Login</span>
+		    <% end %>
+		</li>
+        <% end %>
+   </ul>
+  </div>
+ </div>
+</nav>

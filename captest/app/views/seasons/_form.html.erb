@@ -1,0 +1,25 @@
+<%= form_for(@season) do |f| %>
+  <% if @season.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@season.errors.count, "error") %> prohibited this season from being saved:</h2>
+
+      <ul>
+      <% @season.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :season %><br>
+    <%= f.select :season, [['Indoor','Indoor'],['Outdoor','Outdoor']] %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= select_year Date.today, start_year: Time.now.year, end_year: Time.now.year - 30, field_name: :year, prefix: :season %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
