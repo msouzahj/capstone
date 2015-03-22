@@ -1,0 +1,56 @@
+<h2>Length Converter</h2>
+<p>
+<b>1</b> select a length unit from the "From" dropdown list and one from the "To" dropdown list.
+<br /><b>2</b> Enter a numeric value, and click "To" button.
+<p><form name="length_con">
+
+<table>
+
+	<tr>
+		<td>From </td>
+
+		<td>
+			<select name=from_unit onChange="convert_unit()";>
+			<option> centimeters
+			<option> meters
+			<option> kilometers
+			<option> miles
+			<option> inches
+			<option> feet
+			<option> yards
+			</select>
+
+		</td>
+		<td>  To </td>
+		<td>
+			<select name=to_unit onChange="convert_unit()";>
+			<option> centimeters
+			<option> meters
+			<option> kilometers
+			<option> miles
+			<option> inches
+			<option> feet
+			<option> yards
+			</select>
+
+		</td>
+	</tr>
+	<tr>
+		<td> </td><td colspan="3"><div id="formula">centimeters = 1 centimeters</div></td>
+	</tr>
+
+	<tr>
+		<td colspan="4"> </td>
+	</tr>
+
+	<tr>
+		<td>Enter </td>
+		<td><input type="text" name="from_value" value="1" size="12" maxlength="12"></td>
+		<td> <input type=button value="To" onClick="convert_unit()";> </td>
+		<td><div id="to_value">1</div></td>
+	</tr>
+
+
+</table>
+
+</form>

@@ -1,53 +1,31 @@
 <h1><%= @season.season + " " + @season.year + "'s"%> Meets</h1>
 <br>
 <% if @my_meets[0] == nil %>
- <%= link_to 'Add a Meet', new_season_meet_path %>
+ <%= link_to 'Add a Meet', new_season_meet_path, class: 'btn btn-primary btn-sm' %>
 <%else %>
 <% link_to "Show all Seasons", root_path %>
-<%= link_to 'New Meet', new_season_meet_path, class: 'btn btn-primary' %>
+<%= link_to 'New Meet', new_season_meet_path, class: 'btn btn-primary btn-sm' %>
 <br>
 <br>
-<div class="table-responsive">
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Notes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @my_meets.each do |meet| %>
-      <tr>
-        <td><%= meet.name %></td>
-        <td><%= meet.date %></td>
-        <td><%= meet.notes %></td>
-        <td><%= link_to 'Show', meet_events_path(meet) %></td>
-        <td><%= link_to 'Edit', edit_meet_path(meet) %></td>
-        <td><%= link_to 'Destroy', meet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
 <div class="panel-group" id="accordion">
   <% @my_meets.each do |meet| %>
  <div class="panel panel-default">
   <div class="panel-heading">
    <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= @number %>"><%= meet.name %> <%= meet.date %></a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= @number %>"><%= meet.name %>&nbsp-&nbsp;<%= meet.date.strftime("%B #{meet.date.day.ordinalize}") %></a>
       </h4>
     </div>
     <div id="collapse<%= @number%>" class="panel-collapse collapse">
       <div class="panel-body">
-	<b>Notes</b><br>
-	<%= meet.notes %><br>
 	<b>Results</b><br>
-	 Insert Results per event here.
+	 <% meet.events.each do |event| %>
+	     <%= event.name %>
+	     <%= event.results %><br><br>
+	 <% end %>
          <%= link_to 'Add Results', new_meet_event_path(meet), class: 'btn btn-primary btn-xs' %><br><br>
-
+        <%= link_to 'All Results', meet_events_path(meet), class: 'btn btn-primary btn-sm' %><br><br>
+	<b>Notes</b><br>
+	<%= meet.notes %><br><br>
        <%= link_to 'Edit Meet', edit_meet_path(meet), class: 'btn btn-warning btn-sm' %> 
        <%= link_to 'Remove Meet', meet, method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-danger btn-sm' %>
       </div>

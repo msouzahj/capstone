@@ -1,7 +1,7 @@
 <h1><%=@meet.name %> Results</h1>
-
-<%= link_to 'New Event', new_meet_event_path %><br><br>
-<table>
+<%=  @meet.season.season %>
+<%= link_to 'New Event', new_meet_event_path, class: 'btn btn-primary btn-sm' %><br><br>
+<table class="table">
   <thead>
     <tr>
       <th>Event</th>
@@ -15,8 +15,8 @@
       <tr>
         <td><%= event.name %></td>
         <td><%= event.results %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_event_path(event), class: 'btn btn-warning btn-sm' %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>

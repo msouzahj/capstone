@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse" role="navigation">
- <div class="container-fluid">
+ <div class="container">
   <div class="navbar-header">
    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
     <span class="icon-bar"></span>
@@ -10,9 +10,10 @@
   </div>
   <div class="collapse navbar-collapse" id="myNavbar">
    <ul class="nav navbar-nav">
-    <li><%= link_to "Home", root_path %></li>
-    <li><a href="#">Practice</a></li>
-    <li><%= link_to "Timer", timers_path %></li>
+    <li class="<%= 'active' if params[:controller] == 'seasons'%>"><%= link_to "Home", root_path %></li>
+    <li class="<%= 'active' if params[:controller] == 'notes'%>"><%= link_to "Notes", notes_path %></li>
+    <li class="<%= 'active' if params[:controller] == 'converters'%>"><%= link_to "Converter", converters_path %></li>
+    <li class="<%= 'active' if params[:controller] == 'timers'%>"><%= link_to "Timer", timers_path %></li>
    </ul>
    <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>

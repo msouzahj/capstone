@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305053722) do
+ActiveRecord::Schema.define(version: 20150319220730) do
 
   create_table "accesses", force: true do |t|
     t.integer  "meets_id"
@@ -25,12 +25,18 @@ ActiveRecord::Schema.define(version: 20150305053722) do
   add_index "accesses", ["meets_id"], name: "index_accesses_on_meets_id"
   add_index "accesses", ["seasons_id"], name: "index_accesses_on_seasons_id"
 
+  create_table "converters", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.string   "results"
     t.integer  "meet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "type"
   end
 
   add_index "events", ["meet_id"], name: "index_events_on_meet_id"
@@ -45,6 +51,24 @@ ActiveRecord::Schema.define(version: 20150305053722) do
   end
 
   add_index "meets", ["season_id"], name: "index_meets_on_season_id"
+
+  create_table "notes", force: true do |t|
+    t.string   "title"
+    t.text     "input"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id"
+
+  create_table "practices", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "practices", ["user_id"], name: "index_practices_on_user_id"
 
   create_table "seasons", force: true do |t|
     t.string   "season"

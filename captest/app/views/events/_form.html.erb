@@ -10,14 +10,37 @@
       </ul>
     </div>
   <% end %>
+<% if @meet.season.season == "Outdoor"%>
+  <div class="field">
+    <%= f.label :outdoor_event %><br>
+    <%= f.select :name, [['100m'],['200m'],['400m'],['800m'],['1500m'],['3000m Steeple'],['5000m'],['10,000m'],['100mH'],['110mH'],['400mH'],['4x100m Relay'],['4x400m Relay'],['Long Jump'],['Triple Jump'],['High Jump'],['Pole Vault'],['Discus Throw'],['Hammer Throw'],['Javelin Throw'],['Shot Put']], :include_blank => true %>
+  </div>
+<% else %>
+What type of event?<br>
+<%= f.radio_button :type, true %>
+<%= f.label :type, 'Track' %>
+<%= f.radio_button :type, false %>
+<%= f.label :type, 'Field' %>
+ <% if :type == true %>
+  <div class="field">
+    <%= f.label :track %><br>
+    <%= f.select :name, [['50m'],['55m'],['60m'],['50mH'],['55mH'],['60mH'],['200m'],['400m'],['800m'],['1500m'],['3000m'],['5000m'],['4x100m Relay'],['4x400m Relay']] , :include_blank => true %>
+<br><br>
+    <%= f.label :time %><br>
+    <%= f.text_field :results %>
+  </div>
+  <% elsif :type == false %>
+  <div class="field">
+    <%= f.label :field %><br>
+    <%= f.select :name, [['Long Jump'],['Triple Jump'],['High Jump'],['Pole Vault'],['Shot Put'],['Weight Throw']] , :include_blank => true %><br><br>
+    <%= f.label "Distance/Height" %><br>
+    <%= f.text_field :results %>
+  </div>
+ <% end %>
+<% end %>
+
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :results %><br>
-    <%= f.text_field :results %>
   </div>
   <div class="actions">
     <%= f.submit %>

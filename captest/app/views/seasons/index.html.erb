@@ -3,11 +3,11 @@
   <% if @my_season[0] == nil %>
     <br>
     You have no seasons! 
-    <%= link_to 'New Season', new_season_path %>
+    <%= link_to 'New Season', new_season_path, class: 'btn btn-primary btn-sm' %>
   <% else %>
     <br>
-    <%= link_to 'New Season', new_season_path %>
-<table>
+    <%= link_to 'New Season', new_season_path, class: 'btn btn-primary btn-sm' %>
+<table class="table">
   <thead>
     <tr>
       <th>Season</th>
@@ -21,9 +21,9 @@
       <tr>
 	<td><%= link_to season.season, season_meets_path(season) %></td>
         <td><%= season.year %></td>
-        <td><%= link_to 'Show', season %></td>
-        <td><%= link_to 'Edit', edit_season_path(season) %></td>
-        <td><%= link_to 'Destroy', season, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% link_to 'Show', season %>
+        <td><%= link_to 'Edit', edit_season_path(season), class: 'btn btn-warning btn-sm' %></td>
+        <td><%= link_to 'Destroy', season, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>

@@ -5,6 +5,7 @@ class MeetsController < ApplicationController
     @season = Season.find params[:season_id]
     @meets = Meet.all
     @my_meets = @season.meets.all
+    
     @number = 1
   end
 

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :converters
+
+  resources :notes
+
   resources :timers
 
   resources :accesses
