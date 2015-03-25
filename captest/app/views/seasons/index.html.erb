@@ -1,4 +1,4 @@
-<h1>My Seasons</h1>
+<h1>Seasons</h1>
 <% if user_signed_in? %>
   <% if @my_season[0] == nil %>
     <br>
@@ -7,6 +7,7 @@
   <% else %>
     <br>
     <%= link_to 'New Season', new_season_path, class: 'btn btn-primary btn-sm' %>
+<div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
@@ -28,9 +29,9 @@
     <% end %>
   </tbody>
 </table>
+</div>
     <%end %>
 
 <%end %>
-
 <br>
 

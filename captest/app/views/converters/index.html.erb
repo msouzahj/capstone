@@ -1,16 +1,14 @@
 <h2>Length Converter</h2>
-<p>
-<b>1</b> select a length unit from the "From" dropdown list and one from the "To" dropdown list.
-<br /><b>2</b> Enter a numeric value, and click "To" button.
-<p><form name="length_con">
+<form name="length_con">
 
 <table>
 
 	<tr>
+		<div class="form-group">
 		<td>From </td>
 
 		<td>
-			<select name=from_unit onChange="convert_unit()";>
+			<select class="form-control" name=from_unit onChange="convert_unit()";>
 			<option> centimeters
 			<option> meters
 			<option> kilometers
@@ -19,11 +17,12 @@
 			<option> feet
 			<option> yards
 			</select>
+		</div>
 
 		</td>
 		<td>  To </td>
 		<td>
-			<select name=to_unit onChange="convert_unit()";>
+			<select class="form-control" name=to_unit onChange="convert_unit()";>
 			<option> centimeters
 			<option> meters
 			<option> kilometers
@@ -44,10 +43,12 @@
 	</tr>
 
 	<tr>
+	<div class="form-group">
 		<td>Enter </td>
-		<td><input type="text" name="from_value" value="1" size="12" maxlength="12"></td>
-		<td> <input type=button value="To" onClick="convert_unit()";> </td>
+		<td><input type="text" name="from_value" value="1" size="12" maxlength="12" class="form-control"></td>
+		<td> <input type=button value="To" onClick="convert_unit()"; class="btn btn-sm btn-success"> </td>
 		<td><div id="to_value">1</div></td>
+	</div>
 	</tr>
 
 

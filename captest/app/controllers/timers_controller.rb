@@ -3,6 +3,8 @@ class TimersController < ApplicationController
 
   def index
     @timers = Timer.all
+    @my_time = current_user.timers
+    @saved = Array.new
   end
 
   def show

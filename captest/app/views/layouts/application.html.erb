@@ -12,10 +12,6 @@
 <%= render 'shared/navigation' %>
 <div id="main-container" class="container-fluid">
  <div class="jumbotron" id="jumbo">
-	 <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>. Not you?
-	 <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' %>
-        <% end %>
 
 	<%= yield %>
   <div class="clearfix visible-lg"></div>
