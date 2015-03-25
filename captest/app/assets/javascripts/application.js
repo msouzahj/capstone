@@ -41,3 +41,6 @@ function convert_unit()
 		document.getElementById("to_value").innerHTML = factor * document.length_con.from_value.value;
 }
 
+var images = ['images/image1.jpg', 'images/image2.jpg'];
+
+

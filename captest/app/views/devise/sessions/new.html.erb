@@ -1,17 +1,37 @@
-<h2>Log in</h2>
+<head>
+<script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
+</head>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+<div class="container">
+ <div class="row vertical-offset-100">
+  <div class="col-md-4 col-md-offset-4">
+   <div class="panel panel-default">
+    <div class="panel-heading">
+     <div class="row-fluid user-row">
+	<img src="http://cliparts.co/cliparts/8Tx/KBb/8TxKBbLRc.png" height="140px" width="120" class="img-responsive" alt="Conxole Admin"/>
+     </div>
+    </div>
+    <div class="panel-body">
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-signin') do |f| %>
+  <fieldset>
+   <label class="panel-login">
+      <div class="login_result"></div>
+   </label>
+  <%= f.email_field :email, autofocus: true, id: 'inputEmail', class: 'form-control', placeholder: 'Email address' %><br />
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <%= f.password_field :password, autocomplete: "off",id:'inputPassword', class:'form-control', placeholder:"Password"%>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    <div class="checkbox" style="padding-left:20px;"><%= f.check_box :remember_me%>Remember me</div>
+  <% end -%><br><br>
 
-  <div><%= f.submit "Log in" %></div>
+  <div><%= f.submit "Sign in", id:'login', class: 'btn btn-lg btn-success btn-block' %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+	</fieldset>
+      </div>
+    </div>
+   </div>
+  </div>
+ </div>

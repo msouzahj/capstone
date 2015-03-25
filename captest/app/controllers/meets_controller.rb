@@ -4,8 +4,12 @@ class MeetsController < ApplicationController
   def index
     @season = Season.find params[:season_id]
     @meets = Meet.all
-    @my_meets = @season.meets.all
-    
+    if user_signed_in?
+         @my_meets = @season.meets.all
+    @most_recent = @my_meets.sort_by {|recent| recent[:created_at]}.reverse!
+    end
+	
+   
     @number = 1
   end
 

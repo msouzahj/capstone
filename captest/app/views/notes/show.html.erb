@@ -5,10 +5,14 @@
 </p>
 
 <p>
-  <strong>Today</strong><br><br>
-  <%= @note.input %>
+  <%= simple_format(@note.input) %>
 </p>
 
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+<%= link_to edit_note_path(@note) do %>
+<% content_tag :span, 'Edit', :class => 'glyphicon glyphicon-cog btn btn-warning' %>
+<% end %>
+<%= '  ' %>
+<%= link_to notes_path do %>
+<% content_tag :span, 'Back', class: 'glyphicon glyphicon-arrow-left btn btn-info' %>
+<% end %>
