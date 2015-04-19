@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20150319220730) do
     t.integer  "meet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "type"
   end
 
   add_index "events", ["meet_id"], name: "index_events_on_meet_id"
@@ -61,14 +60,6 @@ ActiveRecord::Schema.define(version: 20150319220730) do
   end
 
   add_index "notes", ["user_id"], name: "index_notes_on_user_id"
-
-  create_table "practices", force: true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "practices", ["user_id"], name: "index_practices_on_user_id"
 
   create_table "seasons", force: true do |t|
     t.string   "season"

@@ -11,7 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require zeroclipboard
 //= require jquery_ujs
+//= require bootstrap.min
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
@@ -41,3 +43,7 @@ function convert_unit()
 		document.getElementById("to_value").innerHTML = factor * document.length_con.from_value.value;
 }
 
+
+//
+//
+//

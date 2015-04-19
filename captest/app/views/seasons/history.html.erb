@@ -1,0 +1,52 @@
+<h1><center>All Results</center></h1>
+<% time = Time.now %>
+<div class="table-responsive">
+ <h4><%= time.year%>'s Results</h4>
+ <table class="table">
+  <thead>
+   <tr><th>Event</th><th>Result</th></tr>
+  </thead> 
+  <tbody>
+     <% @user.seasons.each do |season| %>
+	<% season.meets.each do |meet| %>
+		<% meet.events.each do |event| %>
+		<% if time.year == season.year.to_i %>
+		  <tr>
+			<td><%= link_to event.name, test_path(param1: "#{event.name}") %></td>
+			<td><%= event.results %></td>
+			<td><%= season.season %></td>
+		  </tr>
+                <% end %>
+		<% end %>
+	<% end %>
+     <% end %>
+  </tbody>
+ </table>
+</div>
+<div class="table-responsive">
+  <h4>Past Results</h4>
+  <table class="table">
+   <thead>
+    <tr><th>Event</th><th>Result</th></tr>
+   </thead>
+   <tbody>
+    <% @user.seasons.each do |season| %>
+     <% season.meets.each do |meet| %>
+      <% meet.events.each do |event| %>
+    <% if time.year != season.year.to_i %> 
+       <tr>
+	 <td><%= link_to event.name, test_path(param1: "#{event.name}") %></td>
+	 <td><%= event.results %></td>
+	 <td><%= season.season %> <%= season.year %></td>
+       </tr>
+    <% end %>
+      <% end %>
+     <% end %>
+    <% end %>
+   </tbody>
+  </table>
+</div>
+<% @hash.each do |key, value| %>
+     <%= "#{key}: #{value}" %>
+   <br>
+<% end %>

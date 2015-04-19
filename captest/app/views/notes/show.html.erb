@@ -1,18 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong><%= @note.title %></strong>
-</p>
-
-<p>
-  <%= simple_format(@note.input) %>
-</p>
+<% if @note.user == current_user %>
+<div class="page-header">
+  <center><h2><%= @note.title %></h2></center>
+Created on <%= @note.created_at.strftime("%b %d %Y") %>
+</div>
+<div class="jumbotron">
+<%= simple_format(@note.input) %>
+</div>
 
 
 <%= link_to edit_note_path(@note) do %>
-<% content_tag :span, 'Edit', :class => 'glyphicon glyphicon-cog btn btn-warning' %>
+<% content_tag :span, 'Edit', :class =>  'btn btn-warning' %>
 <% end %>
 <%= '  ' %>
+<%= link_to 'Remove', @note, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'}%>
+<br><br>
 <%= link_to notes_path do %>
-<% content_tag :span, 'Back', class: 'glyphicon glyphicon-arrow-left btn btn-info' %>
+<% content_tag :span, 'Back', class: 'btn btn-info' %>
+<% end %>
+<% else %>
+These are not your notes! :0 Please sign-in in order to see your notes! :)
 <% end %>

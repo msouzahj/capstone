@@ -1,11 +1,10 @@
-<h1><%= @season.season + " " + @season.year + "'s"%> Meets</h1>
+<h1><center><%= @season.season + " " + @season.year + "'s"%> Meets</center></h1>
 <br>
 <% if @my_meets[0] == nil %>
- <%= link_to 'Add a Meet', new_season_meet_path, class: 'btn btn-primary btn-sm' %>
+ <%= link_to 'Add a Meet', new_season_meet_path, class: 'btn btn-primary btn-sm btn-block' %>
 <%else %>
 <% link_to "Show all Seasons", root_path %>
-<%= link_to 'New Meet', new_season_meet_path, class: 'btn btn-primary btn-sm' %>
-<br>
+<%= link_to 'New Meet', new_season_meet_path, class: 'btn btn-primary btn-sm btn-block' %>
 <br>
 <div class="panel-group" id="accordion">
   <% @most_recent.each do |meet| %>
@@ -19,11 +18,11 @@
       <div class="panel-body">
 	<b>Results</b><br>
 	 <% meet.events.each do |event| %>
-	     <%= event.name %>
+	     <%= event.name %> -
 	     <%= event.results %><br><br>
 	 <% end %>
-         <%= link_to 'Add Results', new_meet_event_path(meet), class: 'btn btn-primary btn-xs' %><br><br>
-        <%= link_to 'All Results', meet_events_path(meet), class: 'btn btn-primary btn-sm' %><br><br>
+         <%= link_to 'Add Results', new_meet_event_path(meet), class: 'btn btn-primary btn-sm btn-block' %><br>
+        <%= link_to 'All Results', meet_events_path(meet), class: 'btn btn-primary btn-sm btn-block' %><br>
 	<b>Notes</b><br>
 	<%= meet.notes %><br><br>
        <%= link_to 'Edit Meet', edit_meet_path(meet), class: 'btn btn-warning btn-sm' %> 
