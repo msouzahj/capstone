@@ -20,7 +20,8 @@ class NotesController < ApplicationController
 	@note = Note.find(params[:id])
   end
 
-  def create
+  def create    
+    
     @note = Note.new(note_params)
     @note.user_id = current_user.id
     if @note.save
@@ -39,8 +40,9 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note.destroy
-    redirect_to notes_url
+	@note = Note.find(params[:id])
+	@note.destroy
+	redirect_to notes_url
   end
 
   private

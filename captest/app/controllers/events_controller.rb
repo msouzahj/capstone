@@ -9,8 +9,13 @@ class EventsController < ApplicationController
     #respond_with(@events)
   end
 
+  def test
+    @specific = params[:param1]
+    @user = current_user
+  end
+
   def show
-    #respond_with(@event)
+    
   end
 
   def new
@@ -21,7 +26,7 @@ class EventsController < ApplicationController
 
   def edit
 	@event = Event.find(params[:id])
-	#@meet = Meet.find params[:meet_id]
+#	@season_type = @event.meet.season.season
   end
 
   def create

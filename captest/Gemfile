@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
+gem 'lazy_high_charts'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'quiet_assets', group: :development
 gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
+gem 'zeroclipboard-rails'
 
 gem 'google-api-client'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

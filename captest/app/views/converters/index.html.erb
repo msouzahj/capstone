@@ -1,13 +1,13 @@
-<h2>Length Converter</h2>
+<h2><center>Length Converter</center></h2>
 <form name="length_con">
 
 <table>
-
+	<tr>
+		<td>From </td>
+	</tr>
 	<tr>
 		<div class="form-group">
-		<td>From </td>
-
-		<td>
+		<td colspan=2>
 			<select class="form-control" name=from_unit onChange="convert_unit()";>
 			<option> centimeters
 			<option> meters
@@ -20,8 +20,12 @@
 		</div>
 
 		</td>
+	</tr>
+	<tr>
 		<td>  To </td>
-		<td>
+	</tr>
+	<tr>
+		<td colspan=2>
 			<select class="form-control" name=to_unit onChange="convert_unit()";>
 			<option> centimeters
 			<option> meters
@@ -35,23 +39,43 @@
 		</td>
 	</tr>
 	<tr>
-		<td> </td><td colspan="3"><div id="formula">centimeters = 1 centimeters</div></td>
+		<td colspan="5"><div id="formula">centimeters = 1 centimeters</div></td>
 	</tr>
 
 	<tr>
-		<td colspan="4"> </td>
+		<td colspan="1"> </td>
 	</tr>
 
 	<tr>
 	<div class="form-group">
-		<td>Enter </td>
+		<td><strong>Enter</strong></td>
 		<td><input type="text" name="from_value" value="1" size="12" maxlength="12" class="form-control"></td>
 		<td> <input type=button value="To" onClick="convert_unit()"; class="btn btn-sm btn-success"> </td>
-		<td><div id="to_value">1</div></td>
+	</tr>
 	</div>
+	<tr>
+		<td><strong>Result:</strong></td>
+		<td><div id="to_value">1</div></td>
+ 		<td><button id="button1" class="btn btn-info btn-md" data-clipboard-target="to_value" title="Click to copy me." onClick="return false;">Copy me!</button></td>
 	</tr>
 
 
 </table>
 
 </form>
+<script>
+  $(document).ready(function() {
+    var clip = new ZeroClipboard($("#button1"))
+
+  });
+
+  $("#clear-test").on("click", function(){
+    $("#fe_text").val("Copy me!");
+    $("#testarea").val("");
+  });
+
+//event
+//glue it to the button
+
+</script>
+

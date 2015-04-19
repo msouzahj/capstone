@@ -5,6 +5,9 @@
   <title>My Track!</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
  
   <%= csrf_meta_tags %>
 </head>
@@ -12,7 +15,6 @@
 <%= render 'shared/navigation' %>
 <div id="main-container" class="container-fluid">
  <div class="jumbotron" id="jumbo">
-
 	<%= yield %>
   <div class="clearfix visible-lg"></div>
  </div>

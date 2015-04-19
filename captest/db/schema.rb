@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20150319220730) do
     t.integer  "meet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "type"
   end
 
   add_index "events", ["meet_id"], name: "index_events_on_meet_id"

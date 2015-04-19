@@ -1,25 +1,14 @@
-<h1>Listing notes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<h1><center>My Notes</center></h1>
+  <div class="container">
+   <ul class="list-group">
     <% @my_notes.each do |note| %>
-      <tr>
-        <td><%= note.title %></td>
-        <td><%= link_to 'Show', note %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+	<%= link_to note, style: "text-decoration:none;", class: "lead" do %>
+        <li class="list-group-item list-group-item-info"><%= note.created_at.strftime("%m-%d-%y")%>: <%= note.title %></li>
+	<% end %>
+        <%# link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
-  </tbody>
-</table>
-
+   </ul>
+  </div>
 <br>
 
-<%= link_to 'New Note', new_note_path %>
+<%= link_to 'New Note', new_note_path, class: "btn btn-success btn-block" %>

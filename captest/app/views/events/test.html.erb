@@ -1,0 +1,26 @@
+<h1><center>My Results for <%= @specific %></center></h1>
+
+<div class="table-responsive">
+ <table class="table">
+  <thead>
+   <tr><th>Event</th><th>Result</th></tr>
+  </thead>
+  <tbody>
+     <% @user.seasons.each do |season| %>
+        <% season.meets.each do |meet| %>
+                <% meet.events.each do |event| %>
+		  <% if event.name == @specific %>
+                  <tr>
+                        <td><%= event.name %></td>
+                        <td><%= event.results %></td>
+                        <td><%= link_to "#{season.season} #{season.year}", season_meets_path(season)%></td>
+			<td><%= link_to meet.name, meet_events_path(meet)%></td>
+                  </tr>
+		  <% end %>
+                <% end %>
+        <% end %>
+     <% end %>
+  </tbody>
+ </table>
+</div>
+

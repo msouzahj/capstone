@@ -1,200 +1,23 @@
 <% @timers %>
 
-<!-- timer 2 from another website -->
-
-<html>
-<head>
-	<!-- Created by K�re Byberg � 21.01.2005. Please acknowledge if used on other domains than http://www.timpelen.com -->
-	<!-- Version 1.1 - 22.04.2006 -->
-	<title>Javascript Stopwatch (Cumulative Events)</title>
-
-	<script type="text/javascript">
-	var flagclock = 0;
-	var flagstop = 0;
-	var stoptime = 0;
-	var splitcounter = 0;
-	var currenttime;
-	var splitdate = '';
-	var output;
-	var clock;
-		
-	function startstop()
-		{
-		var startstop = document.getElementById('startstopbutton');
-		var startdate = new Date();
-		var starttime = startdate.getTime();
-		if(flagclock==0)
-			{
-			startstop.value = 'S t o p';
-			flagclock = 1;
-			counter(starttime);
-			}
-		else
-			{
-			startstop.value = 'S t a r t';
-			flagclock = 0;
-			flagstop = 1;
-			splitdate = '';
-			}
-		}
-		
-	function counter(starttime)
-		{
-		output = document.getElementById('output');
-		clock = document.getElementById('clock');
-		currenttime = new Date();
-		var timediff = currenttime.getTime() - starttime;
-		if(flagstop == 1)
-			{
-			timediff = timediff + stoptime
-			}
-		if(flagclock == 1)
-			{
-			clock.value = formattime(timediff,'');
-			refresh = setTimeout('counter(' + starttime + ');',10);
-			}
-		else
-			{
-			window.clearTimeout(refresh);
-			stoptime = timediff;
-			}
-		}
-		
-	function formattime(rawtime,roundtype)
-		{
-		if(roundtype == 'round')
-			{
-			var ds = Math.round(rawtime/100) + '';
-			}
-		else
-			{
-			var ds = Math.floor(rawtime/100) + '';		
-			}
-		var sec = Math.floor(rawtime/1000);
-		var min = Math.floor(rawtime/60000);
-		ds = ds.charAt(ds.length - 1);
-		if(min >= 60)
-			{
-			startstop();
-			}
-		sec = sec - 60 * min + '';
-		if(sec.charAt(sec.length - 2) != '')
-			{
-			sec = sec.charAt(sec.length - 2) + sec.charAt(sec.length - 1);
-			}
-		else
-			{
-			sec = 0 + sec.charAt(sec.length - 1);
-			}	
-		min = min + '';
-		if(min.charAt(min.length - 2) != '')
-			{
-			min = min.charAt(min.length - 2)+min.charAt(min.length - 1);
-			}
-		else
-			{
-			min = 0 + min.charAt(min.length - 1);
-			}
-		return min + ':' + sec + ':' + ds;
-		}
-		
-	function resetclock()
-		{
-		flagstop = 0;
-		stoptime = 0;
-		splitdate = '';
-		window.clearTimeout(refresh);
-		output.value = '';
-		splitcounter = 0;
-		if(flagclock == 1)
-			{
-			var resetdate = new Date();
-			var resettime = resetdate.getTime();
-			counter(resettime);
-			}
-		else
-			{
-			clock.value = "00:00:0";
-			}
-		}
-		
-	function splittime()
-		{
-		if(flagclock == 1)
-			{
-			if(splitdate != '')
-				{	
-				var splitold = splitdate.split(':');
-				var splitnow = clock.value.split(':');
-				var numbers = new Array();
-				var i = 0
-				for(i;i<splitold.length;i++)
-					{
-					numbers[i] = new Array();
-					numbers[i][0] = parseInt(splitold[i]);
-					numbers[i][1] = parseInt(splitnow[i]);
-					}
-				if(numbers[1][1] < numbers[1][0])
-					{
-					numbers[1][1] += 60;
-					numbers[0][1] -= 1;
-					}
-				if(numbers[2][1] < numbers[2][0])
-					{
-					numbers[2][1] += 10;
-					numbers[1][1] -= 1;
-					}
-				var mzeros = (numbers[0][1] - numbers[0][0]) < 10?'0':'';
-				var szeros = (numbers[1][1] - numbers[1][0]) < 10?'0':'';
-				output.value += '\t+' + mzeros + (numbers[0][1] - numbers[0][0]) + ':' + szeros + (numbers[1][1] - numbers[1][0]) + ':' + (numbers[2][1] - numbers[2][0]) + '\n';
-				}
-			splitdate = clock.value;
-			<% @saved.push #{splitdate} %>
-			output.value += splitcounter + 1 + '. ' + clock.value + '\n';
-			splitcounter ++;
-			}
-		}
-	</script>
-	<style type="text/css">
-	*
-		{
-		margin: 0;
-		padding: 0;
-		}
-	
-	input, textarea
-		{
-		width: 100%;
-		font: normal 10pt verdana;
-		}
-	</style>
-</head>
-<body>
-	<input id="clock" type="text" value="00:00:0" style="text-align: center;background-color:white;border:1px solid gray;font-weight:bold;font-size:30px;" readonly><br>
-	<input id="startstopbutton" class="btn btn-success" type="button" value="S t a r t" onClick="startstop();" style="font-weight:bold"><br>
-	<input id="splitbutton" class="btn btn-info" type="button" value="Split time" onClick="splittime();"><br>
-	<input id="resetbutton" class="btn btn-danger" type="button" value="Reset" onClick="resetclock();"><br>
-	<textarea id="output" style="height: 295px;border:1px solid gray"></textarea>
-	<% @saved.each do |a|%>
-	  <%= puts a %>	
-	<% end %>
-<script type="text/javascript"><!--
-function SiteStats_8434(){
-var t=new Date();
-var u='http://proft.50megs.com/cgi-bin/sitestats.gif?p='+escape(location.href)+';r='+escape(document.referrer)+';t='+t.getTime();
-var I=new Image(1,1);  I.src=u;
- }
- SiteStats_8434();
-//--></script><noscript><img src="http://proft.50megs.com/cgi-bin/sitestats.gif?p=http%3A%2F%2Fproft.50megs.com%2Fstopwatch2.html;r=http%3A%2F%2Fproft.50megs.com%2Fstopwatch.html;t=8434;" width=1 height=1 alt="sitestats"></noscript>
-</body>
-</html>
 
 
 <!-- 3rd timer -->
 
-<html>
 <head>
-<title>Super Neat Javascript Stopwatch</title>
+        <style type="text/css">
+        *
+                {
+                margin: auto;
+                padding: 0;
+                }
+
+        input, textarea
+                {
+                width: 100%;
+                font: normal 10pt verdana;
+                }
+        </style>
 <script language="javascript">
 // stopwatch script by Brothercake - http://www.brothercake.com/ (format modified by Proft, 11 Sep 04)
 
@@ -299,51 +122,94 @@ if (init==0) {
 }
 </script>
 </head>
-<body bgcolor=tan>
-<center><b></b></center>
+<center><h2>Lap Timer</h2></center>
+<center><p class="bg-info"><font style="font-size:11pt">&nbsp;Timer continues running on Pause</font></p> </center>
 <form name=clockform>
-<table  align=center cellpadding=5><tr><td>
-<table cellpadding=3 cellspacing=0 border=0 align=center>
-<tr>
-<td ><input name=clock value="00:00:00.00" style="text-align:center; height:80px; font-size:30px; font-weight:bold"></td>
+<table align=center cellpadding=5>
+ <tr>
+  <td>
+  <table cellpadding=3 cellspacing=0 border=0 align=center>
+    <tr>
+	<td colspan=2>
+	  <input name=clock value="00:00:00.00" style="text-align:center; height:80px; font-size:32px; font-weight:bold; background-color: rgba(255,0,255, .00);" readonly>
+	</td>
+    </tr>
+    <tr><td><br></td></tr>
+    <tr>
+	<td>
+	  <input name=starter class="btn btn-success btn-lg" type=button value="Start/Pause" style=" " onclick="findTIME()">
+	</td>
+	<td>
+	   <input name=clearer class="btn btn-danger btn-lg" type=button value="Reset" style="" onclick="clearALL()">
+	</td>
+    </tr>
+    <tr><td><br></td></tr>
+    <tr>
+	<td colspan=2>
+	   <input name=marker class="btn btn-info btn-lg" type=button value="Split" style="" onclick="addMEM()"><br><br>
+	</td>
+    </tr>
+    <tr><td colspan=1 align=left>&nbsp;Split 1  <input name=m0 id="m0" class="form-control"style="text-align:center;" readonly></td>
+	<td><button id="copy-button1" class="btn btn-info btn-md" data-clipboard-text='Default clipboard text from attribute' data-clipboard-target="m0" title="Click to copy me." onClick="return false;">Copy Time</button></td>
+    </tr>
+    <tr><td colspan=1 align=left>&nbsp;Split 2  <input name=m1 id="m1"class="form-control"style="text-align:center;" readonly></td>
+	<td><button id="copy-button2" class="btn btn-info btn-md" data-clipboard-text='Default clipboard text from attribute' data-clipboard-target="m1" title="Click to copy me." onClick="return false;">Copy Time</button></td>
+
 </tr>
-<tr>
-<td colspan=2 >
-<input name=starter class="btn btn-success btn-lg" type=button value="Start/Pause" style=" font-weight:bold" onclick="findTIME()">
-<input name=marker class="btn btn-info btn-lg" type=button value="Split" style="" onclick="addMEM()"><br>
-<input name=clearer class="btn btn-danger btn-lg" type=button value="Reset" onclick="clearALL()">
-<font style="font-size:9pt">&nbsp;Timer continues running on Pause</font>
-</td>
+    <tr><td colspan=1 align=left>&nbsp;Split 3  <input name=m2 id="m2"class="form-control"style="text-align:center;" readonly></td>
+	<td><button id="copy-button3" class="btn btn-info btn-md" data-clipboard-text='Default clipboard text from attribute' data-clipboard-target="m2" title="Click to copy me." onClick="return false;">Copy Time</button></td>
 </tr>
-<tr><td colspan=2 align=left>&nbsp;Split 1  <input name=m0 class="form-control"style="text-align:center;"></td></tr>
-<tr><td colspan=2 align=left>&nbsp;Split 2  <input name=m1 class="form-control"style="text-align:center;"></td></tr>
-<tr><td colspan=2 align=left>&nbsp;Split 3  <input name=m2 class="form-control"style="text-align:center;"></td></tr>
-<tr><td colspan=2 align=left>&nbsp;Split 4  <input name=m3 class="form-control"style="text-align:center;"></td></tr>
-<tr><td colspan=2 align=left>&nbsp;Split 5  <input name=m4 class="form-control"style="text-align:center;"></td></tr>
-<tr><td colspan=2 align=left>&nbsp;Split 6  <input name=m5 class="form-control"style="text-align:center;"></td></tr>
-<tr><td colspan=2 align=left>&nbsp;Split 7  <input name=m6 class="form-control"style="text-align:center;"></td></tr>
-<tr><td colspan=2 align=left>&nbsp;Split 8  <input name=m7 class="form-control"style="text-align:center;"></td></tr>
-<tr><td colspan=2 align=left>&nbsp;Split 9  <input name=m8 class="form-control"style="text-align:center;"></td></tr>
-<tr><td colspan=2 align=left>&nbsp;Split 10 <input name=m9 class="form-control"style="text-align:center;"></td></tr>
-</table>
+    <tr><td colspan=1 align=left>&nbsp;Split 4  <input name=m3 id="m3"class="form-control"style="text-align:center;" readonly></td>
+	<td><button id="copy-button4" class="btn btn-info btn-md" data-clipboard-text='Default clipboard text from attribute' data-clipboard-target="m3" title="Click to copy me." onClick="return false;">Copy Time</button></td>
+    </tr>
+    <tr><td colspan=1 align=left>&nbsp;Split 5  <input name=m4 id="m4"class="form-control"style="text-align:center;" readonly></td>
+	<td><button id="copy-button5" class="btn btn-info btn-md" data-clipboard-text='Default clipboard text from attribute' data-clipboard-target="m4" title="Click to copy me." onClick="return false;">Copy Time</button></td>
+    </tr>
+    <tr><td colspan=1 align=left>&nbsp;Split 6  <input name=m5 id="m5"class="form-control"style="text-align:center;" readonly></td>
+	<td><button id="copy-button6" class="btn btn-info btn-md" data-clipboard-text='Default clipboard text from attribute' data-clipboard-target="m5" title="Click to copy me." onClick="return false;">Copy Time</button></td>
+    </tr>
+    <tr><td colspan=1 align=left>&nbsp;Split 7  <input name=m6 id="m6"class="form-control"style="text-align:center;" readonly></td>
+	<td><button id="copy-button7" class="btn btn-info btn-md" data-clipboard-text='Default clipboard text from attribute' data-clipboard-target="m6" title="Click to copy me." onClick="return false;">Copy Time</button></td>
+    </tr>
+    <tr><td colspan=1 align=left>&nbsp;Split 8  <input name=m7 id="m7"class="form-control"style="text-align:center;" readonly></td>
+	<td><button id="copy-button8" class="btn btn-info btn-md" data-clipboard-text='Default clipboard text from attribute' data-clipboard-target="m7" title="Click to copy me." onClick="return false;">Copy Time</button></td>
+    </tr>
+    <tr><td colspan=1 align=left>&nbsp;Split 9  <input name=m8 id="m8"class="form-control"style="text-align:center;" readonly></td>
+	<td><button id="copy-button9" class="btn btn-info btn-md" data-clipboard-text='Default clipboard text from attribute' data-clipboard-target="m8" title="Click to copy me." onClick="return false;">Copy Time</button></td>
+    </tr>
+    <tr><td colspan=1 align=left>&nbsp;Split 10 <input name=m9 id="m9"class="form-control"style="text-align:center;" readonly></td>
+	<td><button id="copy-button10" class="btn btn-info btn-md" data-clipboard-text='Default clipboard text from attribute' data-clipboard-target="m9" title="Click to copy me." onClick="return false;">Copy Time</button></td>
+    </tr>
+  </table>
 <hr>
-<center><font size=-1>&uarr; <a href="http://www.brothercake.com/scripts/stopwatch.php" target="_blank">Source (unmodified)</a> &uarr;<br>By Brothercake</font></center>
-</td>
-</tr></table>
+    <center><font size=-1>&uarr; <a href="http://www.brothercake.com/scripts/stopwatch.php" target="_blank">Source (unmodified)</a> &uarr;<br>By Brothercake</font></center>
+  </td>
+ </tr>
+</table>
 </form>
-<br><br>
+<script>
+  $(document).ready(function() {
+    var clip = new ZeroClipboard($("#d_clip_button"))
+    var clip1 = new ZeroClipboard($("#copy-button1"))
+    var clip2 = new ZeroClipboard($("#copy-button2"))
+    var clip3 = new ZeroClipboard($("#copy-button3"))
+    var clip4 = new ZeroClipboard($("#copy-button4"))
+    var clip5 = new ZeroClipboard($("#copy-button5"))
+    var clip6 = new ZeroClipboard($("#copy-button6"))
+    var clip7 = new ZeroClipboard($("#copy-button7"))
+    var clip8 = new ZeroClipboard($("#copy-button8"))
+    var clip9 = new ZeroClipboard($("#copy-button9"))
+    var clip10 = new ZeroClipboard($("#copy-button10"))
+
+  });
+
+  $("#clear-test").on("click", function(){
+    $("#fe_text").val("Copy me!");
+    $("#testarea").val("");
+  });
+
+//event
+//glue it to the button
+
 </script>
-<script type="text/javascript">
-_uacct = "UA-917701-1";
-urchinTracker();
-</script>
-<script type="text/javascript"><!--
-function SiteStats_9275(){
-var t=new Date();
-var u='http://proft.50megs.com/cgi-bin/sitestats.gif?p='+escape(location.href)+';r='+escape(document.referrer)+';t='+t.getTime();
-var I=new Image(1,1);  I.src=u;
- }
- SiteStats_9275();
-//--></script><noscript><img src="http://proft.50megs.com/cgi-bin/sitestats.gif?p=http%3A%2F%2Fproft.50megs.com%2Fstopwatch.html;r=https%3A%2F%2Fwww.google.com%2F;t=9275;" width=1 height=1 alt="sitestats"></noscript>
 </body>
-</html>

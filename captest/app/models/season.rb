@@ -5,4 +5,6 @@ class Season < ActiveRecord::Base
 	validates :season, presence: true
 	validates :year, presence: true
 	has_many :accesses
+
+
 end
