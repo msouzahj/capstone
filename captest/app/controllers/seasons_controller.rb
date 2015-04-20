@@ -11,11 +11,10 @@ class SeasonsController < ApplicationController
   def history
 	@user = current_user
 	#add all results for season specific then give option for past results as well.
-#  end
-#  def best
-#	@user = current_user
+  end
+  def best
+	@user = current_user
 
-   # @track = {"100m"=>0,"200m"=>0,"400m"=>0,"800m"=>0,"1500m"=>0,"3000m Steeple"=>0,"5000m"=>0,"10,000m" => 0, "100mH" => 0, "110mH" => 0,"400mH"=>0,"50m"=>0,"55m"=>0,"60m"=>0,"50mH"=>0,"55mH"=>0,"60mH"=>0,"200m"=>0,"400m"=>0,"800m"=>0,"1500m"=>0,"3000m"=>0,"4x100m Relay"=>0,"4x400m Relay"=>0}
     @hash = Hash.new
 	@user.seasons.each do |season|
 		season.meets.each do |meet|

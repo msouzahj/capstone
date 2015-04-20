@@ -11,15 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :season %><br>
-    <%= f.select :season, [['Indoor','Indoor'],['Outdoor','Outdoor']] %>
+    <%= f.select :season, [['Indoor','Indoor'],['Outdoor','Outdoor']], class:"form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :year %><br>
-    <%= select_year Date.today, start_year: Time.now.year, end_year: Time.now.year - 30, field_name: :year, prefix: :season %>
+    <%= select_year Date.today, start_year: Time.now.year, end_year: Time.now.year - 30, field_name: :year, prefix: :season, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= button_tag(type: 'submit', class:"btn btn-success") do %>
+	Submit
+  <% end %>
+<br>
 <% end %>

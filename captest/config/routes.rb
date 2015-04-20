@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   devise_for :users
  
   get 'history', to: 'seasons#history'
+  get 'best', to: 'seasons#best' 
   get 'test', to: 'events#test'
   
   root 'seasons#index'

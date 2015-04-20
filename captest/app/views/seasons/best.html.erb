@@ -1,0 +1,17 @@
+ <h1>My Best!</h1>
+<div class="table-responsive">
+ <table class="table">
+  <thead>
+   <tr><th>Event</th><th>Result</th></tr>
+  </thead>
+  <tbody>
+	<% @hash.each do |event, result| %>
+		<tr>
+			<td><%= event %></td>
+			<td><%= result %></td> 
+                </tr>
+	<% end %>
+  </tbody>
+ </table>
+</div>
+

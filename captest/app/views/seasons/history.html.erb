@@ -15,6 +15,7 @@
 			<td><%= link_to event.name, test_path(param1: "#{event.name}") %></td>
 			<td><%= event.results %></td>
 			<td><%= season.season %></td>
+			<td><%= meet.name %></td>
 		  </tr>
                 <% end %>
 		<% end %>
@@ -38,6 +39,7 @@
 	 <td><%= link_to event.name, test_path(param1: "#{event.name}") %></td>
 	 <td><%= event.results %></td>
 	 <td><%= season.season %> <%= season.year %></td>
+	 <td><%= meet.name %></td>
        </tr>
     <% end %>
       <% end %>
@@ -46,7 +48,3 @@
    </tbody>
   </table>
 </div>
-<% @hash.each do |key, value| %>
-     <%= "#{key}: #{value}" %>
-   <br>
-<% end %>
