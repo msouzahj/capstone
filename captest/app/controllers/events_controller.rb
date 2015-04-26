@@ -33,11 +33,12 @@ class EventsController < ApplicationController
     @meet = Meet.find params[:meet_id]
     @event = @meet.events.new(event_params)
     @meet.id = @event.meet_id
+#    @event.results = @event.results.gsub(/\w/, '')
     unless @event.results.include?"."
         @event.results = @event.results + ".00"
     end
 
-    if
+    if @event.save
 	redirect_to meet_events_path
     else
 	render :new

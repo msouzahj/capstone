@@ -14,8 +14,8 @@
 		  <tr>
 			<td><%= link_to event.name, test_path(param1: "#{event.name}") %></td>
 			<td><%= event.results %></td>
-			<td><%= season.season %></td>
-			<td><%= meet.name %></td>
+			<td><%= link_to "#{season.season}",season_meets_path(season) %></td>
+			<td><%= link_to meet.name, meet_events_path(meet) %></td>
 		  </tr>
                 <% end %>
 		<% end %>
@@ -38,8 +38,8 @@
        <tr>
 	 <td><%= link_to event.name, test_path(param1: "#{event.name}") %></td>
 	 <td><%= event.results %></td>
-	 <td><%= season.season %> <%= season.year %></td>
-	 <td><%= meet.name %></td>
+	 <td><%= link_to "#{season.season} #{season.year}",season_meets_path(season)  %></td>
+	 <td><%= link_to meet.name, meet_events_path(meet) %></td>
        </tr>
     <% end %>
       <% end %>

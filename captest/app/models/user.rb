@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   has_many :seasons
   has_many :timers
   has_many :notes
+  validates :fname, presence: true
+  validates :lname, presence: true
+
+  
 end

@@ -1,5 +1,6 @@
 <h1><center><%= @season.season + " " + @season.year + "'s"%> Meets</center></h1>
 <br>
+<% if @season.user == current_user %>
 <% if @my_meets[0] == nil %>
  <%= link_to 'Add a Meet', new_season_meet_path, class: 'btn btn-primary btn-sm btn-block' %>
 <%else %>
@@ -33,5 +34,7 @@
  <% @number = @number + 1 %>
 <% end %>
 </div>
-
+<% end %>
+<% else %>
+This is not your season! Please view your seasons
 <% end %>

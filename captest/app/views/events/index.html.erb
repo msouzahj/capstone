@@ -2,6 +2,7 @@
 <% if @meet.season.user != current_user%>
 <p><center>Belongs to <%= @meet.season.user.fname %> <%= @meet.season.user.lname %></center></p>
 <% end %>
+<% if @meet.season.user == current_user %>
 <% if @my_events[0] == nil %>
 You have no events! Add one<br>
 <%= link_to 'New Event', new_meet_event_path, class: 'btn btn-primary btn-sm btn-block' %><br><br>
@@ -46,7 +47,7 @@ You have no events! Add one<br>
 </table>
 <% end %>
 <br>
-
+<% end %>
 
 
 
