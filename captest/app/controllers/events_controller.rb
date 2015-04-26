@@ -37,8 +37,7 @@ class EventsController < ApplicationController
         @event.results = @event.results + ".00"
     end
 
-
-    if @event.save
+    if
 	redirect_to meet_events_path
     else
 	render :new

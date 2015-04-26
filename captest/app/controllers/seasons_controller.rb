@@ -66,6 +66,7 @@ class SeasonsController < ApplicationController
   def create
     @season = Season.new(season_params)
     @season.user_id = current_user.id
+
     if @season.save
     	redirect_to season_meets_path(@season)
     else

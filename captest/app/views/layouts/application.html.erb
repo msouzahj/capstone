@@ -15,6 +15,11 @@
 <%= render 'shared/navigation' %>
 <div id="main-container" class="container-fluid">
  <div class="jumbotron" id="jumbo">
+	<p class="notice"><%= notice %></p>
+<% if user_signed_in? %>
+Hello <%= current_user.fname %> <%=current_user.lname%>! Not you?
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+<% end %>
 	<%= yield %>
   <div class="clearfix visible-lg"></div>
  </div>
