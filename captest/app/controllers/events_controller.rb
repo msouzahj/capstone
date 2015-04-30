@@ -35,7 +35,11 @@ class EventsController < ApplicationController
     @meet.id = @event.meet_id
 #    @event.results = @event.results.gsub(/\w/, '')
     unless @event.results.include?"."
+	if @event.results == "NH" || @event.results == "DNF"
+	  nothing = "nothing"
+	else
         @event.results = @event.results + ".00"
+	end
     end
 
     if @event.save

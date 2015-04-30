@@ -14,40 +14,42 @@ class SeasonsController < ApplicationController
   end
   def best
 	@user = current_user
-
+			   		   #@hash["#{event.name}"] = event.results
     @hash = Hash.new
 	@user.seasons.each do |season|
 		season.meets.each do |meet|
 			meet.events.each do |event|
-			   @hash["#{event.name}"] = event.results
-
-		end
-	end
-      end
-        @user.seasons.each do |season|
-                season.meets.each do |meet|
-                        meet.events.each do |event|
-                          @hash.each do |key, value|
-                             #if key.to_s == event.name.to_s
-                             #     value = event.results
-                             #end
-			     if (event.name == "High Jump" || event.name == "Long Jump" || event.name == "Triple Jump" || event.name =="Pole Vault" ||event.name == "Shot Put" || event.name == "Weight Throw" ||event.name == "Discus" || event.name =="Javelin")
-                                if key.to_s == event.name.to_s
+			 #@hash.each do |key, value|
+			   if @hash.empty?
+			   		   @hash["#{event.name}"] = event.results				
+			   elsif @hash.haskey("#{event.name}") == false
+				@hash["#{event.name}"] = event.results
+			   elsif @hash.haskey("#{event.name}") == true	
+		 	    if (event.name == "High Jump" || event.name == "Long Jump" || event.name == "Triple Jump" || event.name =="Pole Vault" ||event.name == "Shot Put" || event.name == "Weight Throw" ||event.name == "Discus" || event.name =="Javelin")
+                                #if key.to_s == event.name.to_s
+			 	     @hash.each do |key, value|
+				       if key.to_s == event.name.to_s
                                         if value.to_f < event.results.to_f
                                            value = event.results
                                         end
-                                end                             
-			    else
-                                if key.to_s == event.name.to_s
+				       end
+				      end
+                                #end                          
+                             else
+                                #if key.to_s == event.name.to_s
+				    @hash.each do |key, value|
+			              if key.to_s == event.name.to_s
                                         if value > event.results
                                            value = event.results
                                         end
-                                end 
-			    end
-                          end
-
-                end
-        end
+				     end
+				    end
+                                #end 
+                            end
+		   	   end
+			 #end
+		end
+	   end
       end
 
   end
