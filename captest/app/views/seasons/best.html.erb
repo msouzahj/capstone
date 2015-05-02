@@ -14,36 +14,3 @@
   </tbody>
  </table>
 </div>
-<%= @hash["High Jump"] %>
-       <% @user.seasons.each do |season|%>
-                <%season.meets.each do |meet|%>
-                       <% meet.events.each do |event|%>
-                         <% @hash.each do |key, value|%>
-                             <%#if key.to_s == event.name.to_s%>
-                             <%#     value = event.results%>
-                            <% #end%>
-                             <%if (event.name == "High Jump" || event.name == "Long Jump" || event.name == "Triple Jump" || event.name =="Pole Vault" ||event.name == "Shot Put" || event.name == "Weight Throw" ||event.name == "Discus" || event.name =="Javelin")%>
-                               <% if key.to_s == event.name.to_s%>
-					<%= key %> <%= event.name %><br>
-					<%= value %>  <%= event.results %> <br>
-                                      <%  if value.to_f < event.results.to_f%>
-					Here!<%=value%><br>
-                                         <%  value = event.results%>
-					 <%= value %><br>
-					 <%= puts "This is the new value! = #{value} of #{event.name.to_s}"%>
-					
-                                       <% end%>
-                               <% end%>
-                            <%else%>
-                               <% if key.to_s == event.name.to_s%>
-                                        <%if value > event.results%>
-                                          <% value = event.results%>
-					  <%= puts "This is the new value! = #{value} of #{event.name.to_s}"%>
-                                       <% end%>
-                              <%  end%>
-                            <%end%>
-                          <%end%>
-
-                <%end%>
-        <%end%>
-<% end %>
