@@ -15,34 +15,45 @@ class SeasonsController < ApplicationController
   def best
 	@user = current_user
 			   		   #@hash["#{event.name}"] = event.results
-    @hash = Hash.new
+    @my_hash = Hash.new
 	@user.seasons.each do |season|
 		season.meets.each do |meet|
 			meet.events.each do |event|
-			   if @hash.empty?
-			  	@hash["#{event.name}"] = event.results				
-			   elsif @hash.has_key?("#{event.name}") == false
-				@hash["#{event.name}"] = event.results
-			   elsif @hash.has_key?("#{event.name}") == true	
+			   if @my_hash.empty?
+			  	@my_hash.store("#{event.name}",event.results)	
+			   elsif @my_hash.has_key?("#{event.name}") == false
+				@my_hash.store("#{event.name}",event.results)
+
+			   elsif @my_hash.has_key?("#{event.name}") == true	
 		 	    if (event.name == "High Jump" || event.name == "Long Jump" || event.name == "Triple Jump" || event.name =="Pole Vault" ||event.name == "Shot Put" || event.name == "Weight Throw" ||event.name == "Discus" || event.name =="Javelin")
-			 	     @hash.update(@hash) do |key, value|
+			 	     @my_hash.keys.each do |key|
 				       if key.to_s == event.name.to_s
-                                        if value.to_f > event.results.to_f
-					   value = value
-                                        else 
-                                           value = event.results
-                                        end
-				       end
-				      end
-                             else
-				    @hash.update(@hash) do |key, value|
-			              if key.to_s == event.name.to_s
-                                        if value < event.results
-					   value = value
-                                        else
-					   value = event.results
+                                        if event.results.to_f > @my_hash[key].to_f
+                                           @my_hash[key] = event.results
+                                        elsif event.results.to_f <= @my_hash[key].to_f 
+					   @my_hash[key] = @my_hash[key]
 					end
-				     end
+				       end	
+				      end
+			     elsif (event.name == "100m" || event.name == "200m" || event.name == "100mH" || event.name == "50m" || event.name == "55m" || event.name == "60m" || event.name == "50mH" || event.name == "55mH" || event.name =="60mH" || event.name == "400m" || event.name == "400mH" || event.name == "100mH")
+				    @my_hash.keys.each do |key|
+			              if key.to_s == event.name.to_s
+                                        if  @my_hash[key] < event.results
+						@my_hash[key] = event.results
+					elsif @my_hash[key] >= event.results
+					   @my_hash[key] = @my_hash[key]
+					end
+				      end
+				    end
+                             else
+				    @my_hash.keys.each do |key|
+			              if key.to_s == event.name.to_s
+                                        if  @my_hash[key] > event.results
+					   @my_hash[key] = event.results
+					elsif @my_hash[key] <= event.results
+					   @my_hash[key] = @my_hash[key]
+					end
+				      end
 				    end
                             end
 		   	   end
