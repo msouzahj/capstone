@@ -7,7 +7,8 @@
   <tbody>
 	<% @my_hash.each do |event, result| %>
 		<tr>
-			<td><%= event %></td>
+			<td><%= link_to event, test_path(param1: "#{event}") %></td>
+
 			<td><%= result %></td> 
                 </tr>
 	<% end %>
